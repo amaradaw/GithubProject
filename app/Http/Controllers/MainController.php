@@ -7,7 +7,16 @@ use App\Http\Controllers\MainController;
 
 class MainController extends Controller
 {
+    function about(){
+        return view('template.about');
+    }
+
     function index(){
         return view('index');
     }
+
+    /*function aboutMetodo(){
+        return view('index');
+
+    }*/
 }
