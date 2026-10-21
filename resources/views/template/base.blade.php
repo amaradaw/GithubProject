@@ -27,21 +27,47 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{ { route('aboutNombre')}}">About 1</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{ { url('aboutRuta') }}">About 2</a></li>
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{ { action([App\Http\Controllers\MainController::class ,'aboutMetodo'])}}">About 3</a></li> -->
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="https://ieszaidinvergeles.org">IES ZV</a></li>
+                        <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{ { route('aboutNombre') } }">About 1</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{ { url('aboutRuta') } }">About 2</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{ { action([App\Http\Controllers\MainController::class, 'aboutMetodo']) } }">About 3</a></li> -->
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" target="izv" href="https://ieszaidinvergeles.org">IES ZV</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('portfolio') }}">Portfolio</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('about') }}">About</a></li>
+                        <!--<li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('array') }}">Array</a></li>-->
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('alumno.index') }}">Alumno</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('profesor.index') }}">Profesor</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
         <!-- Masthead-->
         <header class="masthead bg-primary text-white text-center">
-              @yield('content')
+            @error('error') <!-- si llega un mensaje de tipo error -->
+               <div class="row">
+                <div class="col-md-4 mx-auto">
+                 <div class="alert alert-danger" role="alert">
+                     {{ $message }}
+                  </div>
+                </div>
+              </div>
+            @enderror()
+            @session('success') <!-- si llega una variable en la sesion de nombre succes -->
+               <div class="row">
+                 <div class="col-md-4 mx-auto">
+                  <div class="alert alert-info" role="alert">
+                     {{ session('success') }}
+                   </div>
+                  </div>
+                 </div>
+            @endsession
+
+
+            @yield('before-content')
+            @yield('content')
+            @yield('after-content')
         </header>
         <!-- Portfolio Section-->
-
+            @yield('blanco')
         <!-- About Section-->
       
         <!-- Contact Section-->
@@ -88,10 +114,11 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="{{ asset('assets/script/scripts.js') }}"></script>
+        @yield('script')
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+        <!--<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>-->
     </body>
 </html>
