@@ -1,0 +1,57 @@
+@extends('template.base')
+
+@section('before-content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+<a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('modulo.create') }}">Crear Modulo</a>
+</div>
+</div>
+</div>
+@endsection
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <table class="table table-hover">
+                @foreach($modulos as $modulo)
+                    <tr>
+                        <td>{{ $modulo->id }}</td>
+                        <td>{{ $modulo->nombre }}</td>
+                        <td>{{ $modulo->abreviatura }}</td>
+                        <td>{{ $modulo->horas}}</td>
+                        <td>{{ $modulo->creditos}}</td>
+                        <td>
+                            <a href="{{ route('alumno.show', $modulo) }}" class="btn btn-secondary">View</a>
+                            <a href="{{ route('alumno.edit' , $modulo) }}" class="btn btn-secondary">Edit</a>
+                            <!-- <a href="{{ route('index') }}" class="btn btn-secondary">Delete</a> -->
+                             <form data-message="{{ $modulo->nombre }}" class="confirm-dialog" action="{{ route('modulo.destroy' , $alumno) }}" method="post" style="display : inline;">
+                                @csrf
+                                @method('delete')
+                                <input type="submit" value="Delete" class="btn btn-secondary">
+                             </form>
+                        </td>
+                    </tr>
+                @endforeach
+            </table>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('script')
+<script>
+    document.querySelectorAll('form.confirm-dialog').forEach (
+        form => {
+            form.addEventListener('submit' , e => {
+                const message = '¿Seguro que quieres borrar la asignatura ' + form.dataset.message + '?';
+                if(!confirm(message)) {
+                    e.preventDefault();
+
+                }
+            });
+        }
+    );
+</script>
+@endsection
