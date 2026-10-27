@@ -3,15 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Alumno extends Model
 {
-    // esto es el modelo que corresponde a la migracion de Alumno
-    // el nombre de ORM de Laravel es Eloquent
+    // Esto es el modelo que corresponde a la migración de Alumno
+    // El modelo del orm de laravel es eloquent
 
-    // nombre de la tabla
     protected $table = 'alumno';
-
-    // campos que hay que rellenar antes de guardar un objeto en la base de datos
+    
     protected $fillable = ['nombre', 'apellidos', 'fnac', 'genero', 'nacceso'];
+
+    public function matriculas(): HasMany {
+        return $this->hasMany(Matricula::class);
+    }
 }

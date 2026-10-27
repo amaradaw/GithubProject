@@ -5,6 +5,7 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\ModuloController;
 use App\Http\Controllers\ProfesorController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MatriculaController;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('about', [MainController::class, 'about'])->name('about');
@@ -34,3 +35,4 @@ Route::delete('profesor/{profesor}', [ProfesorController::class, 'destroy'])->na
 Route::resource('alumno' , AlumnoController::class);
 Route::resource('modulo' , ModuloController::class);
 Route::resource('profesor' , ProfesorController::class);
+Route::resource('matricula' , MatriculaController::class);
