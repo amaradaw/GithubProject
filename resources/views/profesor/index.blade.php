@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
-<a class="btn btn-outline-dark" href="{{ route('profesor.create') }}">Crear profesor</a>
+<a class="btn btn-secondary" href="{{ route('profesor.create') }}">Crear Profesor</a>
 </div>
 </div>
 </div>

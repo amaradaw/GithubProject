@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mx-auto">
-<a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ route('modulo.create') }}">Crear Modulo</a>
-</div>
-</div>
+            <a class="btn btn-secondary" href="{{ route('modulo.create') }}">Crear Modulo</a>
+        </div>
+    </div>
 </div>
 @endsection
 
@@ -23,10 +23,14 @@
                         <td>{{ $modulo->horas}}</td>
                         <td>{{ $modulo->creditos}}</td>
                         <td>
-                            <a href="{{ route('alumno.show', $modulo) }}" class="btn btn-secondary">View</a>
-                            <a href="{{ route('alumno.edit' , $modulo) }}" class="btn btn-secondary">Edit</a>
-                            <!-- <a href="{{ route('index') }}" class="btn btn-secondary">Delete</a> -->
-                             <form data-message="{{ $modulo->nombre }}" class="confirm-dialog" action="{{ route('modulo.destroy' , $alumno) }}" method="post" style="display : inline;">
+                            <!-- 1. CORREGIDO: De alumno.show a modulo.show -->
+                            <a href="{{ route('modulo.show', $modulo) }}" class="btn btn-secondary">View</a>
+                            
+                            <!-- 2. CORREGIDO: De alumno.edit a modulo.edit -->
+                            <a href="{{ route('modulo.edit', $modulo) }}" class="btn btn-secondary">Edit</a>
+                            
+                            <!-- 3. CORREGIDO: De $alumno a $modulo en el action -->
+                            <form data-message="{{ $modulo->nombre }}" class="confirm-dialog" action="{{ route('modulo.destroy', $modulo) }}" method="post" style="display : inline;">
                                 @csrf
                                 @method('delete')
                                 <input type="submit" value="Delete" class="btn btn-secondary">
@@ -45,10 +49,10 @@
     document.querySelectorAll('form.confirm-dialog').forEach (
         form => {
             form.addEventListener('submit' , e => {
-                const message = '¿Seguro que quieres borrar la asignatura ' + form.dataset.message + '?';
+                // Pequeño ajuste estético: cambiado 'asignatura' por 'el módulo'
+                const message = '¿Seguro que quieres borrar el módulo ' + form.dataset.message + '?';
                 if(!confirm(message)) {
                     e.preventDefault();
-
                 }
             });
         }

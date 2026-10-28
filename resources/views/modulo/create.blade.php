@@ -5,63 +5,57 @@
     <div class="row">
         <div class="col-md-6 mx-auto">
 
-            <form action="{{ route('alumno.store') }}" method="post">
+            <!-- 1. CAMBIADA LA RUTA A MODULO.STORE -->
+            <form action="{{ route('modulo.store') }}" method="post">
                 @csrf
-                <!-- medida de seguridad que se usa con todas las rutas que no sean get */
-                introduce un token en el formulario -->
+                
+                <!-- CAMPO NOMBRE -->
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" value="{{ old('nombre') }}" class="form-control" id="nombre" name="nombre" required maxlength="100" placeholder="Introduce el nombre del alumno">
-                     @error('nombre')
-                     <div class="alert alert-danger" role="alert" style="margin-top: 6px;">
-                      {{ $message }}
+                    <label for="nombre" class="form-label">Nombre del Módulo</label>
+                    <input type="text" value="{{ old('nombre') }}" class="form-control" id="nombre" name="nombre" required placeholder="Introduce el nombre del módulo">
+                    @error('nombre')
+                    <div class="alert alert-danger" role="alert" style="margin-top: 6px;">
+                        {{ $message }}
                     </div>
-                    @enderror()
+                    @enderror
+                </div>
 
-                </div>
+                <!-- CAMPO ABREVIATURA -->
                 <div class="mb-3">
-                    <label for="apellidos" class="form-label">Apellidos</label>
-                    <input type="text" value="{{ old('apellidos') }}" class="form-control" id="apellidos" name="apellidos" required maxlength="130" placeholder="Introduce los apellidos del alumno">
-                     @error('apellidos')
-                    <div class="alert alert-danger" role="alert" style="margin-top: 6px;" >
-                    {{ $message }}
-                    </div>
-                    @enderror()
-                </div>
-                <div class="mb-3">
-                    <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento</label>
-                    <input type="date" value="{{ old('fnac') }}" class="form-control" id="fecha_nacimiento" name="fnac" max="{{  now()->format('Y-m-d') }}">
-                     @error('fnac')
-                    <div class="alert alert-danger" role="alert" style="margin-top: 6px;" >
-                    {{ $message }}
-                    </div>
-                    @enderror()
-                </div>
-                <div class="mb-3">
-                    <label for="genero" class="form-label">Género</label>
-                    <select class="form-select" id="genero" name="genero">
-                        <option value="" @selected( old('genero') == '')>Selecciona una opción</option>
-                        <option value="masculino" @selected( old('genero') == 'masculino')>Masculino</option>
-                        <option value="femenino" @selected( old('genero') == 'femenino')>Femenino</option>
-                        <option value="otro" @selected( old('genero') == 'otro')>Otro</option>
-                    </select>
-                     @error('genero')
+                    <label for="abreviatura" class="form-label">Abreviatura</label>
+                    <input type="text" value="{{ old('abreviatura') }}" class="form-control" id="abreviatura" name="abreviatura" required placeholder="Introduce la abreviatura">
+                    @error('abreviatura')
                     <div class="alert alert-danger" role="alert" style="margin-top: 6px;">
-                    {{ $message }}
+                        {{ $message }}
                     </div>
-                    @enderror()
+                    @enderror
                 </div>
+
+                <!-- CAMPO HORAS -->
                 <div class="mb-3">
-                    <label for="nota_acceso" class="form-label">Nota de acceso</label>
-                    <input type="number" class="form-control" id="nota_acceso" name="nacceso" min="0" max="10" step="0.01" placeholder="Introduce la nota de acceso">
-                     @error('nacceso')
+                    <label for="horas" class="form-label">Horas</label>
+                    <input type="number" value="{{ old('horas') }}" class="form-control" id="horas" name="horas" required min="1" placeholder="Introduce el número de horas">
+                    @error('horas')
                     <div class="alert alert-danger" role="alert" style="margin-top: 6px;">
-                    {{ $message }}
+                        {{ $message }}
                     </div>
-                    @enderror()
+                    @enderror
                 </div>
+
+                <!-- CAMPO CRÉDITOS -->
+                <div class="mb-3">
+                    <label for="creditos" class="form-label">Créditos</label>
+                    <input type="number" value="{{ old('creditos') }}" class="form-control" id="creditos" name="creditos" required min="1" placeholder="Introduce los créditos">
+                    @error('creditos')
+                    <div class="alert alert-danger" role="alert" style="margin-top: 6px;">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                </div>
+
+                <!-- BOTÓN DE ENVÍO -->
                 <button type="submit" class="btn btn-secondary">
-                    Crear alumno
+                    Crear módulo
                 </button>
             </form>
         </div>

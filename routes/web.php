@@ -6,6 +6,7 @@ use App\Http\Controllers\ModuloController;
 use App\Http\Controllers\ProfesorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MatriculaController;
+use App\Http\Controllers\MartriculaController;
 
 Route::get('/', [MainController::class, 'index'])->name('index');
 Route::get('about', [MainController::class, 'about'])->name('about');
@@ -36,3 +37,4 @@ Route::resource('alumno' , AlumnoController::class);
 Route::resource('modulo' , ModuloController::class);
 Route::resource('profesor' , ProfesorController::class);
 Route::resource('matricula' , MatriculaController::class);
+Route::resource('martricula' , MatriculaController::class);
